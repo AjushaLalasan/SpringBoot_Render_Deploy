@@ -27,21 +27,31 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+@Bean
+SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.csrf(csrf -> csrf.disable())
+        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .authorizeHttpRequests(auth -> auth
+            .anyRequest().permitAll()   // all requests are open
+        );
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Use the correct CORS method
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                .requestMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    return http.build();
+}
 
-        return http.build();
-    }
+    // @Bean
+    // SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    //     http.csrf(csrf -> csrf.disable())
+    //         .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Use the correct CORS method
+    //         .authorizeHttpRequests(auth -> auth
+    //             .requestMatchers("/auth/**").permitAll()
+    //             .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+    //             .requestMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+    //             .anyRequest().authenticated()
+    //         )
+    //         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+    //     return http.build();
+    // }
 
     
     @Bean
