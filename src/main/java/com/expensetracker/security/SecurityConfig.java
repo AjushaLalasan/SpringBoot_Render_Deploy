@@ -27,16 +27,6 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-// @Bean
-// SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//     http.csrf(csrf -> csrf.disable())
-//         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-//         .authorizeHttpRequests(auth -> auth
-//             .anyRequest().permitAll()   // all requests are open
-//         );
-
-//     return http.build();
-// }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -59,7 +49,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://127.0.0.1:3000","http://localhost:3000","https://react-vercel-deploy-3vw3l3pqy-ajusha-lalasans-projects.vercel.app")); // Update with your frontend URL
+        config.setAllowedOrigins(List.of("react-vercel-deploy-five-delta.vercel.app")); // Update with your frontend URL
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setExposedHeaders(List.of("Authorization")); 

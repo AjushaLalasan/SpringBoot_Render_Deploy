@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://react-vercel-deploy-3vw3l3pqy-ajusha-lalasans-projects.vercel.app")
+@CrossOrigin(origins = "react-vercel-deploy-five-delta.vercel.app")
 public class AuthController {
 
 	@Autowired
