@@ -49,7 +49,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://127.0.0.1:3000","http://localhost:3000")); // Update with your frontend URL
+        config.setAllowedOrigins(List.of("http://127.0.0.1:3000","http://localhost:3000","https://react-vercel-deploy-cbbgpm6yc-ajusha-lalasans-projects.vercel.app")); // Update with your frontend URL
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setExposedHeaders(List.of("Authorization")); 
